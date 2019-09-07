@@ -1,0 +1,17 @@
+.cohort-profile-img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+h5.card-title {
+  display: inline;
+}
+
+.card {
+  margin: 0.5em;
+}
+
+.team-picker-quantity {
+  margin-top: 1em;
+}

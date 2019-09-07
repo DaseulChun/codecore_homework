@@ -1,0 +1,38 @@
+<%- include("../partials/header") %>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= cohort.name %></h5>
+    <p class="card-text"><%= cohort.members %></p>
+    <form action="/cohorts/<%= cohort.id %>" method="POST">
+      <input type="hidden" value="DELETE" name="_method" >
+      <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+    <a href="/cohorts/<%= cohort.id %>/edit"><input type="submit" value="Edit" class="edit btn btn-outline-primary"></a>
+  </div>
+<hr>
+  <div class="card-body">
+    <form action="/cohorts/<%= cohort.id %>" method="POST">
+      <label for="method" class="card-text">Method</label>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="method" value="teamCount" class="custom-control-input">
+        <label for="method" class="custom-control-label">Team Count</label>
+        <br/>
+        <input type="radio" name="method" value="numberPerTeam" class="custom-control-input">
+        <label for="method" class="custom-control-label">Number Per Team</label>
+      </div>
+
+      <div class="team-picker-quantity">
+        <label for="quantity">Quantity</label>
+        <input type="text" name="quantity">
+      </div>
+    </form>
+  </div>
+  <input type="submit" value="Assign Teams" class="edit btn btn-outline-primary">
+  <!-- <form action="/cohorts/<%= cohort.id %>" method="POST">
+    <input type="hidden" value="DELETE" name="_method">
+    <input type="submit" value="Delete">
+  </form>
+  <a href="/cohorts/<%= cohort.id %>/edit"><input type="submit" value="Edit"></a> -->
+</div>
+
+<%- include("../partials/footer") %>
