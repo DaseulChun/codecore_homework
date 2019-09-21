@@ -10,7 +10,13 @@
   </head>
 
   <body>
-    <%= flash[:notice] || flash[:alert] %>
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
+
+    
     <div class="d-flex flex-row justify-content-between bg-light">
       <h5 class="text-primary my-auto mx-3">Blog On Rails</h5>
       <ul class="nav mx-3">
@@ -20,6 +26,22 @@
         <li class="nav-item">
           <%= link_to 'New Post', new_post_path, class:"nav-link" %> 
         </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.full_name, edit_user_path(current_user), class:"nav-link text-danger" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log Out', sessions_path, method: :delete,  data: {confirm: "Are you sure you want to log out?"},  class:"nav-link" %> 
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign In", new_session_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">  
+            <%= link_to "Sign Up", new_user_path, class:"nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <%= yield %>

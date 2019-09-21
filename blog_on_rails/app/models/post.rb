@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  belongs_to :user
   has_many :comments, dependent: :destroy
 
   # The title column must be present and unique.

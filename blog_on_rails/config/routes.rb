@@ -16,4 +16,14 @@ Rails.application.routes.draw do
 
   # POST /posts/:id/comments comments#create post_comments
   # DELETE /comments/:id comments#destroy post_comment
+
+  resources :users, only: [:new, :create, :edit, :update]
+
+  get "users/:id/change_password", {to: "users#show_change_password", as: :change_password_user}
+  patch "users/:id/change_password", {to: "users#change_password"}
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+  
 end

@@ -1,0 +1,32 @@
+<div class="mx-3 my-3">
+  <h1>Edit User Information</h1>
+
+  <% if @user.errors.any? %>
+      <ul>
+          <% @user.errors.full_messages.each do |msg|%>
+          <li><%=msg%></li>
+          <% end %>
+      </ul>
+
+  <%end%>
+
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class:"form-control" %>
+    </div>
+
+    <%= f.submit class:"btn btn-outline-primary" %>
+    <%= link_to "Change Password", change_password_user_path(current_user), class:"btn btn-danger" %>
+  <% end %>
+</div>
